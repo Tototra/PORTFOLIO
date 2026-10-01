@@ -1,0 +1,9 @@
+// Déploiement sur Cloudflare Workers, en fichiers statiques uniquement :
+// pas de code serveur, Cloudflare sert le contenu de dist/ (et applique dist/_headers).
+{
+  "name": "portfolio",
+  "compatibility_date": "2026-09-30",
+  "assets": {
+    "directory": "./dist"
+  }
+}
