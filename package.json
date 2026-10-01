@@ -1,0 +1,26 @@
+{
+  "name": "thomas-trahant-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "check": "tsc --noEmit",
+    "lint:text": "node scripts/check-text.mjs",
+    "bench:race": "node scripts/race-bench.ts"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2",
+    "vite": "^8.3.1"
+  },
+  "dependencies": {
+    "@fontsource-variable/archivo": "^5.3.0",
+    "@fontsource-variable/jetbrains-mono": "^5.3.0",
+    "@fontsource/instrument-serif": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=20.19"
+  }
+}

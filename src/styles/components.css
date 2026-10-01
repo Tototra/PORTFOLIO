@@ -1,0 +1,443 @@
+/* ==========================================================================
+   Petits éléments d'interface
+   ========================================================================== */
+
+.tag {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.serif {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.led {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--c-off);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25);
+  flex: none;
+}
+
+.led--on {
+  background: var(--volt);
+  box-shadow: 0 0 0 3px rgba(200, 240, 60, 0.18), 0 0 10px rgba(200, 240, 60, 0.7);
+}
+
+.led--warn {
+  background: var(--signal);
+  box-shadow: 0 0 0 3px var(--signal-soft), 0 0 10px rgba(255, 77, 0, 0.6);
+}
+
+.led--live {
+  background: var(--signal);
+  animation: blink 1.4s steps(2, jump-none) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.25;
+  }
+}
+
+/* Boutons façon matériel : une ombre dure qui s'enfonce au clic */
+.btn {
+  --btn-bg: var(--paper);
+  --btn-fg: var(--ink);
+  --btn-edge: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 8px 16px;
+  border: 1.5px solid var(--btn-edge);
+  border-radius: 8px;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-family: var(--f-mono);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 3px 0 var(--btn-edge);
+  transform: translateY(0);
+  transition: transform 0.08s, box-shadow 0.08s, background 0.15s;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  color: var(--btn-fg);
+  background: var(--paper-2);
+}
+
+.btn:active,
+.btn[aria-pressed='true'] {
+  transform: translateY(3px);
+  box-shadow: 0 0 0 var(--btn-edge);
+}
+
+.btn--signal {
+  --btn-bg: var(--signal);
+  --btn-fg: #140800;
+  --btn-edge: var(--ink);
+}
+
+.btn--signal:hover {
+  background: #ff6a26;
+}
+
+.btn--ghost {
+  box-shadow: none;
+  border-color: var(--rule-2);
+}
+
+.btn--ghost:active {
+  transform: none;
+}
+
+.btn--sm {
+  min-height: 32px;
+  padding: 5px 11px;
+  font-size: 11px;
+  box-shadow: 0 2px 0 var(--btn-edge);
+}
+
+.btn--sm:active,
+.btn--sm[aria-pressed='true'] {
+  transform: translateY(2px);
+}
+
+/* Boutons dans les écrans sombres */
+.screen .btn {
+  --btn-bg: var(--screen-2);
+  --btn-fg: var(--screen-ink);
+  --btn-edge: #000;
+  border-color: var(--screen-rule);
+  box-shadow: 0 3px 0 #000;
+}
+
+.screen .btn:hover {
+  background: var(--screen-3);
+}
+
+.screen .btn--signal {
+  --btn-bg: var(--signal);
+  --btn-fg: #140800;
+  border-color: #000;
+}
+
+.screen .btn--signal:hover {
+  background: #ff6a26;
+}
+
+.screen .btn[aria-pressed='true'] {
+  background: var(--screen-ink);
+  color: var(--screen);
+  box-shadow: 0 0 0 #000;
+}
+
+.screen .btn--sm {
+  box-shadow: 0 2px 0 #000;
+}
+
+/* Contrôle segmenté */
+.seg {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.seg-label {
+  margin-right: 4px;
+}
+
+/* Puces de techno */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.chip {
+  font-family: var(--f-mono);
+  font-size: 11.5px;
+  padding: 3px 8px;
+  border: 1px solid var(--rule-2);
+  border-radius: 999px;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+
+/* Afficheurs numériques */
+.readouts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.readout {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 84px;
+  padding: 7px 10px 8px;
+  border: 1px solid var(--screen-rule);
+  border-radius: 8px;
+  background: var(--screen-2);
+}
+
+.readout .tag {
+  color: var(--screen-dim);
+  font-size: 10px;
+}
+
+.readout__value {
+  font-family: var(--f-mono);
+  font-size: 17px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--screen-ink);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.readout--signal .readout__value {
+  color: var(--c1);
+}
+
+.readout--volt .readout__value {
+  color: var(--volt);
+}
+
+/* Bouton rotatif accessible (role=slider) */
+.knob {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: ns-resize;
+  touch-action: none;
+  user-select: none;
+}
+
+.knob__dial {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #3a3a34, #121210 70%);
+  border: 1.5px solid #000;
+  box-shadow: 0 3px 0 #000, inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transform: rotate(var(--angle, 0deg));
+}
+
+.knob__dial::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 4px;
+  width: 3px;
+  height: 12px;
+  margin-left: -1.5px;
+  border-radius: 2px;
+  background: var(--signal);
+}
+
+.knob__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.knob__value {
+  font-family: var(--f-mono);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--screen-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.knob .tag {
+  color: var(--screen-dim);
+}
+
+/* ==========================================================================
+   L'écran : le panneau sombre qui accueille chaque démo
+   ========================================================================== */
+
+.screen {
+  position: relative;
+  background: var(--screen);
+  color: var(--screen-ink);
+  border-radius: var(--radius);
+  border: 1px solid var(--screen-edge);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 24px 48px -28px rgba(0, 0, 0, 0.55);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+/* Vis aux quatre coins */
+.screen::before,
+.screen::after {
+  content: '';
+  position: absolute;
+  top: 7px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #2d2d28;
+  box-shadow: inset 0 0 0 1px #000;
+}
+
+.screen::before {
+  left: 7px;
+}
+
+.screen::after {
+  right: 7px;
+}
+
+.screen__bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 8px;
+  min-height: 20px;
+}
+
+.screen__bar .tag {
+  color: var(--screen-dim);
+}
+
+.screen__title {
+  color: var(--screen-ink) !important;
+}
+
+.screen__bar .spacer {
+  flex: 1;
+}
+
+.screen__view {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--screen-2);
+  border: 1px solid var(--screen-rule);
+}
+
+.screen__view canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.screen__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+}
+
+.screen__caption {
+  font-family: var(--f-mono);
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: var(--screen-dim);
+  padding: 0 4px 2px;
+}
+
+.screen__caption strong {
+  color: var(--screen-ink);
+  font-weight: 600;
+}
+
+.screen .tag {
+  color: var(--screen-dim);
+}
+
+.screen :focus-visible {
+  outline-color: var(--volt);
+}
+
+/* ==========================================================================
+   En-têtes de section
+   ========================================================================== */
+
+.section {
+  padding-block: clamp(72px, 10vw, 140px) 0;
+}
+
+.sec-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: end;
+  gap: 8px 20px;
+  padding-top: 14px;
+  border-top: 3px solid var(--ink);
+  margin-bottom: clamp(28px, 4vw, 48px);
+}
+
+.sec-num {
+  font-family: var(--f-mono);
+  font-size: 13px;
+  font-weight: 600;
+  align-self: start;
+  padding: 3px 7px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 4px;
+}
+
+.sec-title {
+  font-size: clamp(32px, 8.2vw, 112px);
+  overflow-wrap: anywhere;
+  font-weight: 800;
+  font-stretch: 125%;
+  line-height: 0.86;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.sec-meta {
+  text-align: right;
+}
+
+.sec-lead {
+  max-width: 62ch;
+  font-size: clamp(18px, 1.6vw, 21px);
+  color: var(--ink-2);
+  margin-bottom: clamp(28px, 4vw, 44px);
+}
+
+.sec-lead .serif {
+  font-size: 1.2em;
+  color: var(--ink);
+}
+
+@media (max-width: 640px) {
+  .sec-head {
+    grid-template-columns: auto 1fr;
+  }
+  .sec-meta {
+    grid-column: 1 / -1;
+    text-align: left;
+  }
+}
