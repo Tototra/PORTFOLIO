@@ -77,7 +77,17 @@ export function hero() {
   const stage = h(
     'div',
     { class: 'hero__stage' },
-
+    h(
+      'div',
+      { class: 'hero__top' },
+      h(
+        'div',
+        { class: 'hero__meters' },
+        h('span', { class: 'hero__meter' }, tag('Pas'), stepEl),
+        h('span', { class: 'hero__meter' }, spark),
+        h('span', { class: 'hero__meter' }, stateLed, stateTxt),
+      ),
+    ),
     canvas,
     h('div', { class: 'hero__controls' }, optSeg.el, knobSlot, h('div', { class: 'hero__btns' }, shakeBtn, resetBtn)),
     h(
