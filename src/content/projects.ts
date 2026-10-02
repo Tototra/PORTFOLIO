@@ -59,7 +59,7 @@ export const projects: Project[] = [
   },
   {
     id: "t5",
-    title: "Correcteur grammaticale",
+    title: "Correcteur grammatical",
     kicker: "Un bon score et un modèle utilisable, ce n'est pas la même chose",
     period: "Juin 2026 · 1 mois",
     team: "Projet de groupe",
